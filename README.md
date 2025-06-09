@@ -8,6 +8,9 @@ The skip size data is fetched dynamically from the external API:
 [API Endpoint](https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft)
 
 ---
+## Screenshots
+![Skip Size Selector](./public/app.png)
+---
 
 ## Approach & Design
 
