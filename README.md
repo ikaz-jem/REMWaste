@@ -1,29 +1,18 @@
 # Skip Size Selector Redesign Code Challenge
 
+![Skip Size Selector Mobile](./public/mobile.png)
+
 ## Overview
 
-This project is a redesign of the "Choose your skip size" page from **We Want Waste**. The goal of this challenge was to completely redesign the UI while keeping the existing functionality intact, for a better **user experience (UX)**. Additionally, the page must be responsive and work well across both **desktop** and **mobile** devices.
+This project is a redesign of the "Choose your skip size" page from **We Want Waste**. The goal of this challenge was to completely redesign the UI while maintaining the existing functionality intact, for a better **user experience (UX)**. Additionally, the page must be responsive and work well across both **desktop** and **mobile** devices.
 
 The skip size data is fetched dynamically from the external API:  
 [API Endpoint](https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft)
 
----
-## Screenshots
+
 ![Skip Size Selector](./public/app.png)
+
 ---
-## Approach & Design
-
-### **1. Understanding the Problem**
-
-The challenge was to redesign the "Choose your skip size" page while maintaining the **existing functionality**. The primary goals were:
-- Redesign the page to be more **user-friendly**.
-- Make the page **responsive** for both **desktop** and **mobile** devices.
-- Fetch and display **skip size data** dynamically from an external API.
-
-To tackle this, I focused on the following aspects:
-- **Modularizing** the components for better maintainability.
-- Ensuring the page is **responsive** and **mobile-friendly**.
-- Providing a smooth, **error-free user experience**.
 
 ## Technologies Used
 
@@ -36,106 +25,156 @@ To tackle this, I focused on the following aspects:
 - **Kendo React**: A library of UI components for building rich data-driven apps, used here for layout purposes.
 - **React Loading Skeleton**: A component that provides placeholder skeleton loaders to enhance UX during API data fetching.
 - **React Spinners**: A library of spinner components to display loading states in the UI.
-- **React icons**: icons lib, which utilizes ES6 imports .
-
-.
-
-### **2. Component Structure**
-
-I used **React functional components** to create a modular and maintainable solution. The app's key components are as follows:
-
-1. **SkipSelector** (Parent Component):
-   - Handles the **API call** via a custom hook (`useSkips`) that fetches data and caches it for 1 hour.
-   - **Handles loading state** with a UX-friendly Skeleton Loader.
-   - Passes the fetched skip data to the child component `SkipCategory`.
-
-2. **SkipCategory** (Child Component):
-   - Manages the **state** for the selected skip and unit (yards/meters).
-   - Handles re-renders of child components upon dynamic value changes.
-   - Displays the skip size options and allows users to select a skip size.
-
-3. **SelectSkipSize** (Child Component):
-   - Displays the skip options and allows users to select their desired skip size.
-   - Handles unit conversions (e.g., yards to meters).
-   - Passes the selected skip to the parent component (`SkipCategory`).
-   
-   **Props**:
-   - `select`: Function that updates the selected skip in the parent state.
-   - `skips`: Array of skip data to display.
-   - `selected`: Currently selected skip object.
-   - `setUnit`: Function to change the unit (yards/meters).
-   - `unit`: Current unit for measurement (e.g., yards or meters).
-   - `displayUnit`: The unit to be displayed (either yards or meters).
-
-4. **SkipInfoCard** (Child Component):
-   - Displays detailed information about the selected skip (e.g., size, Conditions , Price ...).
-   - Updates dynamically based on the selected skip and unit.
-   
-   **Props**:
-   - `unit`: Current unit for measurement.
-   - `selected`: The selected skip object.
-   - `displayUnit`: The unit to be displayed (either yards or meters).
-
-5. **Loader/Error Handling**:
-   - Displays a **Skeleton loading state** while the API call  is in progress .
-   - Shows an **error message** if the API request fails or if there's an issue fetching data.
+- **React Icons**: An icon library that utilizes ES6 imports.
 
 ---
 
-### **3. Fetching and Displaying Data**
+## Approach & Design
 
-The skip size data is fetched from the provided API using **Axios** and **React Query**. This approach ensures that the data is cached for infrequent updated server Data , and not re-fetched unnecessarily, improving performance and user experience.
+### 1. Understanding the Problem
 
-Here’s the code for fetching and caching the skip data:
+The challenge was to redesign the "Choose your skip size" page while maintaining the **existing functionality**. The primary goals were:
+- Redesign the page to be more **user-friendly**.
+- Make the page **responsive** for both **desktop** and **mobile** devices.
+- Fetch and display **skip size data** dynamically from an external API.
+
+To tackle this, I focused on the following aspects:
+- **Modularizing** the components for better maintainability.
+- Ensuring the page is **responsive** and **mobile-friendly**.
+- Providing a smooth, **error-free user experience**.
+
+### 2. Component Structure
+
+The app uses **React functional components** for a modular and maintainable solution. Key components are:
+
+1. **SkipSelector (Parent Component)**:
+   - Handles the **API call** via a custom hook (`useSkips`) to fetch and cache data.
+   - Manages the **loading state** with a UX-friendly Skeleton Loader.
+   - Passes the fetched skip data to the child component `SkipCategory`.
+
+2. **SkipCategory (Child Component)**:
+   - Manages the **state** for the selected skip and unit (yards/meters).
+   - Handles re-renders of child components upon dynamic value changes.
+   - Displays skip size options and allows users to select their preferred skip.
+
+3. **SelectSkipSize (Child Component)**:
+   - Displays the skip options and allows users to select a skip size.
+   - Handles unit conversions (e.g., yards to meters).
+   - Passes the selected skip to the parent component (`SkipCategory`).
+
+4. **SkipInfoCard (Child Component)**:
+   - Displays detailed information about the selected skip (size, conditions, price, etc.).
+   - Updates dynamically based on the selected skip and unit.
+
+5. **Loader/Error Handling**:
+   - Displays a **Skeleton loading state** during data fetching.
+   - Shows an **error message** if the API request fails.
+
+---
+
+### 3. Fetching and Displaying Data
+
+The skip size data is fetched using **Axios** and **React Query**, which ensures that the data is cached for 1 hour and not re-fetched unnecessarily , Retries 2 times and error gets handled on the Component With An Error UI giving Hands to the user to Retry Using A simply and basic retry Mechanism that relies on Rerendering To retrigger the Fetch.
+
+![Error](./public/retry.png)
 
 ```js
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const fetchSkips = async () => {
-  const endpoint = import.meta.env.VITE_SKIPS_ENDPOINT;
+  const endpoint = import.meta.env.VITE_SKIPS_ENDPOINT+"dd/da5445";
 
   try {
     const response = await axios.get(endpoint);
     return response.data;
+   
+    
   } catch (error) {
     throw new Error(error?.response?.data?.message || 'Failed to fetch skips data');
   }
 };
 
 /**
- * Custom hook to fetch and cache skip data for 1 hour.
- * @returns {Object} Contains the loading, error, and data states.
+ * 
+ * @returns cashes Data For 1Hr && Returns Fetching Status 
  */
+
 export const useSkips = () => {
     const { isLoading, error, data } = useQuery({
         queryKey: ['skips'],
         queryFn: fetchSkips,
-        staleTime: 1000 * 60 * 60, // 1 hour cache time
-        cacheTime: 1000 * 60 * 60, // 1 hour cache duration
-        retry: 1,
+        staleTime: 1000 * 60 *0 , 
+        cacheTime: 1000 * 60 *0, 
+        retry: 2,
     });
 
     return { isLoading, error, data };
 };
-````
-## Why I Chose `useState` and React Query Over Redux/Context for This Challenge
 
-### Context
-This challenge focuses on redesigning **Step 2** of a multi-step form (a stepper). Since this step is mostly isolated and has its own local state for managing the skip selection, I decided that using **`useState`** was the simplest and most efficient choice for managing state in this component.
+```
 
-### Reasons for Choosing `useState`:
-- **Localized State**: The skip selection is local to Step 2, and no other part of the application requires access to this specific data. Therefore, **`useState`** is sufficient for the job.
-- **Simplicity and Speed**: The goal of this challenge was to redesign Step 2 efficiently without over-complicating things. Using **`useState`** avoids the overhead of setting up **Redux** or **Context API**, which would add unnecessary boilerplate for such a small, isolated feature.
-- **React Query for Data Fetching**: Since the skips data is being fetched from an API, I used **React Query** to handle caching, background refetching, and state management for remote data, making **Redux/Context unnecessary** for managing that particular state.
+## Key Design Decisions
 
-### What If This Were Part of a Larger App?
-If the challenge had required building out the **entire flow** (i.e., steps 1 through 5 of the form), or if the data needed to be shared between different parts of the application, I would have likely opted for **Context** or **Redux** to manage global state across the entire app.
+### 1. **Why `useState` and React Query Over Redux/Context**
 
-Here’s why:
-- **Context API**: Great for **prop drilling** and sharing state between distant components. If the skip data or user’s form selections were needed across multiple steps, **Context** would be a good solution.
-- **Redux Toolkit**: A more **robust solution** for managing **global state** in large applications, particularly if there’s a need for advanced state logic like asynchronous actions, or if you need to manage complex state across various steps in the flow.
+- **Localized State**: Since this challenge was about redesigning a specific part of a multi-step form, **`useState`** was chosen for simplicity. This keeps the logic for skip selection isolated to this component without introducing unnecessary complexity.
+- **React Query for Data Fetching**: The skip data is dynamic, and **React Query** was used to cache and manage the remote data efficiently. **Redux** or **Context API** were not needed since the data was local to the component.
 
-But for this isolated step, **`useState`** and **React Query** are lightweight, easy-to-use solutions that do the job without unnecessary complexity.
+### 2. **Performance Considerations**
 
+- **Caching**: The skip data is cached for 1 hour, which prevents unnecessary re-fetching and improves performance. This is especially important if the skip data doesn’t change frequently.
+- **Optimizing API Calls**: By using React Query and caching the data, the app reduces the number of API requests, ensuring faster load times and better user experience.
 
+### 3. **Scalability & Future Enhancements**
+
+If the app were to scale, we could consider:
+- **Dynamic Filters**: Adding a filtering system for skip sizes or categories.
+- **Pagination**: If the API returns a large number of results, pagination could be added for a smoother experience.
+- **More Interactive Visuals**: Consider adding interactive visuals like charts or graphs to represent skip sizes or volume.
+
+### 4. **Accessibility**
+
+- **Headless UI**: Leveraged to ensure accessibility. All custom components like dropdowns, modal dialogs, and popups are fully accessible.
+- **Keyboard Navigation**: Ensured that users can interact with all elements using the keyboard.
+- **Focus Management**: Focus is managed properly on user interactions to improve accessibility, especially for users with disabilities.
+
+### 5. **Error Handling & Loading States**
+
+- **Skeleton Loading State**: A **Skeleton Loader** from `React Loading Skeleton` was used to provide a smooth loading experience when the API is fetching data.
+- **Error Message**: If the API request fails, an error message is displayed, and users are prompted to retry.
+
+### 6. **Testing**
+
+- No formal tests have been implemented for this challenge. However, if this feature were to be expanded, **unit tests** would be added for:
+  - Component rendering and user interaction.
+  - API request success and failure handling.
+  - State updates.
+
+## Installation & Setup
+
+### 1. Clone the Repository
+
+First, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/ikaz-jem/REMWaste.git
+```
+### 2. Install Dependencies
+
+```bash
+cd REMWaste
+npm install
+```
+### 3. Set Up Environment Variables
+
+```env
+VITE_SKIPS_ENDPOINT=https://app.wewantwaste.co.uk/api/skips/by-location?postcode=NR32&area=Lowestoft
+
+```
+
+### 4. Start the Development Server
+
+```bash
+npm run dev
+```

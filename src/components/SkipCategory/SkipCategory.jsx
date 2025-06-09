@@ -14,7 +14,7 @@ import SelectSkipSize from './SelectSkipSize';
 
 
 export default function SkipCategory({ skips }) {
-
+console.log(skips)
     const [selected, setSelected] = useState(skips[0] || {})
     const [unit, setUnit] = useState('yards')
 
