@@ -1,15 +1,19 @@
 export const navigation = [
     {
         title: 'About',
-        hrfef: '',
+        href: '/about',
     },
     {
-        title: 'Features',
-        hrfef: 'FAQ',
+        title: 'Skips',
+        href: '/skips',
     },
     {
         title: 'FAQ',
-        hrfef: 'FAQ',
+        href: '/faq',
+    },
+    {
+        title: 'Contact',
+        href: '/contact',
     },
 ]
 

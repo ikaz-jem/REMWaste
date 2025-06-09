@@ -20,7 +20,7 @@ export default function Navbar() {
 
                     <ul className="md:flex hidden gap-10">
                         {
-                            navigation?.map((link, idx) => <a key={idx} className="text-white text-lg font-semibold uppercase cursor-pointer hover:text-primary">{link?.title}</a>)
+                            navigation?.map((link, idx) => <a key={idx} className="text-white text-md  uppercase cursor-pointer hover:text-primary">{link?.title}</a>)
                         }
                     </ul>
                     {/* <ButtonPrimary onClick={login} className="md:flex hidden items-center justify-center">Action</ButtonPrimary> */}

@@ -2,16 +2,14 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle, TransitionChild, Disc
 import { useState } from 'react'
 import logo from "../../assets/logo.png"
 import { navigation } from "./navigation";
-import ButtonPrimary from '../ButtonPrimary/ButtonPrimary';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloseSharp } from "react-icons/io5";
 import Developer from '../Developer/Developer';
 
 export default function NavbaMobile() {
 
-    const login = ()=>Router.push('/login')
-
   const [open, setOpen] = useState(false)
+  
   return (
     <>
       <GiHamburgerMenu className="text-4xl text-white hover:text-primary transition-all cursor-pointer md:hidden flex " onClick={() => setOpen(true)} />
@@ -58,15 +56,14 @@ export default function NavbaMobile() {
                   <div className="w-full h-full p-5">
                     <ul className="grid gap-5 ">
                       {
-                        navigation?.map((link, idx) => <li key={idx} className="cursor-pointer hover:text-primary bg-white/5 p-2 rounded">{link?.title}</li>)
+                        navigation?.map((link, idx) => <li key={idx} className="cursor-pointer text-foreground hover:text-primary bg-white/5 p-2 rounded">{link?.title}</li>)
                       }
                     </ul>
 
                   </div>
 
-                  <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Your content */}</div>
                   <div className="flex justify-center p-5">
-                    {/* <ButtonPrimary onClick={login} className='w-full'>Action</ButtonPrimary> */}
+
                     <Developer className={"w-full"}/>
                   </div>
                 </div>

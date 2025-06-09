@@ -1,17 +1,15 @@
 import './index.css'
 import Navbar from './components/NavBar/Navbar'
-import SkipSelector from './containers/SkipSelector'
 import TailwindEffect from './TailwindEffect'
-
-
+import AppRoutes from './router'
 
 export default function App() {
 
   return (
-    <div className='relative space-y-10'>
+    <div className=' space-y-10'>
       <Navbar />
       {/* Main Component */}
-      <SkipSelector />
+      <AppRoutes />
       {/* blob effect */}
       <TailwindEffect />
     </div>

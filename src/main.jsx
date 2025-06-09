@@ -12,10 +12,12 @@ export const queryClient = new QueryClient();
 const localStoragePersister = createSyncStoragePersister({
   storage: window.localStorage,
 });
+
 persistQueryClient({
   queryClient,
   persister: localStoragePersister,
 });
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -11,13 +11,13 @@ import { Tooltip } from 'react-tooltip'
 export default function SkipInfoCard({ unit, selected, displayUnit }) {
     return (
 
-        <div className='flex flex-col gap-5 border  rounded p-5 relative'>
+        <div className='flex flex-col gap-5 border border-primary/5 bg-accent/2 shadow-2xl  rounded p-5 '>
             <Tooltip id="icons-tooltip" />
 
 
-            <div className='flex items-center justify-center'>
+            <div className='flex items-center justify-center relative'>
                 {
-                    !selected?.transport_cost && <p className='bg-green-500/20 border border-green-500/30 absolute top-0 right-0 rounded px-2 py-1 text-green-500 text-xs'> Free Delivery </p>
+                    !selected?.transport_cost && <p className='bg-green-500/20 border border-green-500/30 absolute top-0 right-0 rounded px-2 py-1 text-green-500 text-xs backdrop-blur'> Free Delivery </p>
                 }
 
                 <img src={skip} loading='lazy' alt="" className="w-full" />
@@ -25,7 +25,7 @@ export default function SkipInfoCard({ unit, selected, displayUnit }) {
             <div className='grid gap-3'>
                 <div className='flex justify-between items-center'>
 
-                    <p className='text-xl  lg:text-3xl text-accent font-bold uppercase'> {convertUnit(selected.size, unit)} {displayUnit} Skip </p>
+                    <p className='text-xl  lg:text-2xl text-accent font-bold uppercase'> {convertUnit(selected.size, unit)} {displayUnit} Skip </p>
                     <p className='text-xs text-neutral font-bold uppercase truncate'> {selected.hire_period_days} Days Hire Periode </p>
                 </div>
 
@@ -39,7 +39,7 @@ export default function SkipInfoCard({ unit, selected, displayUnit }) {
                         <GiTowTruck data-tooltip-id="icons-tooltip" data-tooltip-content={clsx(selected.transport_cost ? "⚠️ Transport Excluded " : " Free Transport ")} className={clsx('cursor-pointer text-3xl hover:scale-110 transition-all', !selected.transport_cost ? "text-primary" : 'text-neutral-500 ')} />
                     </div>
                     <div className='  border border-accent/40 bg-accent/10 rounded-lg p-2 px-5 w-max flex flex-col items-center justify-center'>
-                    <p className="text-xl md:text-2xl lg:text-4xl text-accent">£ {selected.price_before_vat}</p>
+                    <p className="text-xl md:text-2xl lg:text-3xl text-accent">£ {selected.price_before_vat}</p>
                     {/* <p className='text-[10px] text-red-500 font-bold  truncate  '> For {selected.hire_period_days} Days !   </p> */}
                     </div>
                 </div>

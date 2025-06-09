@@ -3,7 +3,6 @@ import SkipInfoCard from './SkipInfoCard';
 import SkipBorderEffect from './SkipBorderEffect';
 import SelectSkipSize from './SelectSkipSize';
 
-
 /**
  * A React component that displays a user's profile card.
  * 
@@ -12,7 +11,6 @@ import SelectSkipSize from './SelectSkipSize';
  * @returns {JSX.Element} A profile card element displaying user information.
  */
 
-
 export default function SkipCategory({ skips }) {
 
     const [selected, setSelected] = useState(skips[0] || {})
@@ -20,6 +18,12 @@ export default function SkipCategory({ skips }) {
 
     const displayUnit = unit || "Meters"
     
+/**
+ * Function passed To child Components To Update Parent Component ,  sets the selected Skip and Rerenders The parent and its child to ensure Data updates correctly
+ * @function handleSelect
+ * @param {Object} skip takes An object of Single Skip data   
+ * @returns  {Void}
+ */
     const handleSelect = (item) => setSelected(item)
 
     return (
