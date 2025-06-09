@@ -83,7 +83,7 @@ export default function SelectSkipSize({ skips, setUnit, selected, displayUnit, 
                         </li>)
                 }
             </ul>
-            <ButtonPrimary icon={<AiOutlineShoppingCart className='text-xl text-white' />} className='w-full py-5 capitalize'>
+            <ButtonPrimary icon={<AiOutlineShoppingCart className='text-xl text-white' />} className='w-full py-5 capitalize hidden md:flex'>
                 {`Hire ${convertUnit(selected.size,unit)} ${displayUnit} Skip`}
             </ButtonPrimary>
         </div>

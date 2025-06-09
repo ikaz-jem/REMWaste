@@ -6,7 +6,8 @@ import { convertUnit } from "../../utils/convertUnit";
 import skip from '../../assets/skip.webp'
 
 import { Tooltip } from 'react-tooltip'
-
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
 
 export default function SkipInfoCard({ unit, selected, displayUnit }) {
     return (
@@ -43,6 +44,9 @@ export default function SkipInfoCard({ unit, selected, displayUnit }) {
                     {/* <p className='text-[10px] text-red-500 font-bold  truncate  '> For {selected.hire_period_days} Days !   </p> */}
                     </div>
                 </div>
+                                <ButtonPrimary icon={<AiOutlineShoppingCart className='text-xl text-white' />} className='w-full py-5 capitalize  md:hidden'>
+                                    {`Hire  Skip`}
+                                </ButtonPrimary>
 
             </div>
 
