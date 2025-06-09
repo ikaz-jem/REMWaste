@@ -83,12 +83,14 @@ body,html {
 .k-step {
   margin: 0 !important;
   padding: 0 !important;
-  color: #fd7e14;
+  font-size: 12px;
+  font-weight: light;
+  
+  
 }
 .k-step-label {
   margin-bottom: 15px  !important;
   color: white !important;
-  font-weight: 500;
 }
 
 .k-step-current .k-step-indicator {
