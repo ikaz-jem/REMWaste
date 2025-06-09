@@ -1,10 +1,7 @@
 
-import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
 import logo from "../../assets/logo.png"
-import { Suspense ,lazy} from "react";
 import { navigation } from "./navigation";
 import Developer from "../Developer/Developer";
-
 
 import NavbaMobile from './NavMobile'
 

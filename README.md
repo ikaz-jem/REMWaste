@@ -11,6 +11,7 @@ The skip size data is fetched dynamically from the external API:
 
 
 ![Skip Size Selector](./public/app.png)
+![Skip Size Selector](./public/mobileraw.png)
 
 ---
 
@@ -26,6 +27,9 @@ The skip size data is fetched dynamically from the external API:
 - **React Loading Skeleton**: A component that provides placeholder skeleton loaders to enhance UX during API data fetching.
 - **React Spinners**: A library of spinner components to display loading states in the UI.
 - **React Icons**: An icon library that utilizes ES6 imports.
+- **react-tooltip**: A react tooltip is a floating react element that displays information related to an anchor element when it receives keyboard focus or the mouse hovers over it.
+
+.
 
 ---
 
@@ -43,14 +47,32 @@ To tackle this, I focused on the following aspects:
 - Ensuring the page is **responsive** and **mobile-friendly**.
 - Providing a smooth, **error-free user experience**.
 
-### 2. Component Structure
 
-The app uses **React functional components** for a modular and maintainable solution. Key components are:
+### 2. UX & UI Enhancements
+
+Key UX improvements made to the page include:
+
+- **Simplified Flow**: The skip selection flow was made intuitive, with a clear visual hierarchy.
+- **Error Handling with Retry**: I implemented an error-handling component that allows users to retry fetching skip data if an error occurs.
+- **Responsive Design**: Ensured that the UI is fully responsive, adapting smoothly across various screen sizes.
+- **Measure Unit Conversion**: Easy toggle mode to switch & convert from Yards to Meters.
+- **Simple Navbar and Mobile Navigation**: Added simple Nav And Navmobile to add more Depth And Ease Of use.
+- **Skip Condition Icons**: UX-friendly icons that switch on and off with primary color and a supporting explaining tooltip , depending on the skip condition for more informational content and similar UX experience (e.g., "Not Allowed on Road", "Heavy Waste Allowed").
+- **Skeleton Loader**: To maintain a smooth user experience during data fetching, I used a skeleton loader, which improves the perceived speed of the page.
+- **Color Psychology **: Strategic use of **yellow**, **orange**, and **black** colors to improve user engagement and drive actions:
+  - **Yellow** is used to highlight important actions and call-to-action buttons, creating a sense of urgency.
+  - **Orange** emphasizes active states and buttons, evoking excitement and encouraging users to interact.
+  - **Black** serves as a grounding, professional color that provides contrast and ensures readability, all while adding an elegant touch to the design.
+
+### 3. Component Structure
+
+i used **React functional components** for a modular and maintainable solution. Key components are:
 
 1. **SkipSelector (Parent Component)**:
-   - Handles the **API call** via a custom hook (`useSkips`) to fetch and cache data.
+   - Handles the **API call** via a custom hook (`useSkips`) to fetch and cache data for 1hr (2 retries).
    - Manages the **loading state** with a UX-friendly Skeleton Loader.
    - Passes the fetched skip data to the child component `SkipCategory`.
+   - Manages visualizing the Error upon API call failure or error Displaying A simple "Retry Again" UI.
 
 2. **SkipCategory (Child Component)**:
    - Manages the **state** for the selected skip and unit (yards/meters).
@@ -72,7 +94,7 @@ The app uses **React functional components** for a modular and maintainable solu
 
 ---
 
-### 3. Fetching and Displaying Data
+### 4. Fetching and Displaying Data
 
 The skip size data is fetched using **Axios** and **React Query**, which ensures that the data is cached for 1 hour and not re-fetched unnecessarily , Retries 2 times and error gets handled on the Component With An Error UI giving Hands to the user to Retry Using A simply and basic retry Mechanism that relies on Rerendering To retrigger the Fetch.
 
@@ -83,13 +105,10 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 const fetchSkips = async () => {
-  const endpoint = import.meta.env.VITE_SKIPS_ENDPOINT+"dd/da5445";
-
+  const endpoint = import.meta.env.VITE_SKIPS_ENDPOINT;
   try {
     const response = await axios.get(endpoint);
     return response.data;
-   
-    
   } catch (error) {
     throw new Error(error?.response?.data?.message || 'Failed to fetch skips data');
   }
@@ -108,7 +127,6 @@ export const useSkips = () => {
         cacheTime: 1000 * 60 *0, 
         retry: 2,
     });
-
     return { isLoading, error, data };
 };
 
@@ -136,7 +154,6 @@ If the app were to scale, we could consider:
 ### 4. **Accessibility**
 
 - **Headless UI**: Leveraged to ensure accessibility. All custom components like dropdowns, modal dialogs, and popups are fully accessible.
-- **Keyboard Navigation**: Ensured that users can interact with all elements using the keyboard.
 - **Focus Management**: Focus is managed properly on user interactions to improve accessibility, especially for users with disabilities.
 
 ### 5. **Error Handling & Loading States**

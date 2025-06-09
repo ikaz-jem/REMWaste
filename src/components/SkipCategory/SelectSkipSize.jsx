@@ -33,10 +33,10 @@ export default function SelectSkipSize({ skips, setUnit, selected, displayUnit, 
                     <p className='text-xs text-white/50'>{displayUnit}</p>
                 </div>
             </div>
-            <div className='flex flex-col gap-2 overflow-y-scroll h-40 md:h-full  rounded py-5'>
+            <div className='flex flex-col gap-2 overflow-y-scroll h-40 md:h-full max-h-[40vh]  rounded py-5'>
                 {
                     skips?.map((skip) =>
-                        <div key={skip.id} className={clsx(' border border-accent/10 h-10 rounded cursor-pointer transition-all flex items-center px-5 py-5 text-white ', selected.id == skip.id ? "bg-primary/10 scale-98" : "bg-transparent")} onClick={() => select(skip)}>
+                        <div key={skip.id} className={clsx(' border border-accent/10 h-12 rounded cursor-pointer transition-all flex items-center px-5 py-5 text-white ', selected.id == skip.id ? "bg-primary/10 scale-98" : "bg-transparent")} onClick={() => select(skip)}>
                             <div className='flex items-center justify-between w-full'>
                                 <div className='flex gap-5 items-center'>
 
@@ -46,8 +46,10 @@ export default function SelectSkipSize({ skips, setUnit, selected, displayUnit, 
                                             :
                                             <GrHomeOption className={clsx('text-xl hover:scale-110 transition-all text-primary/10')} />
                                     }
+                                    <div className='flex flex-col '>
 
-                                    <p className='capitalize'>{convertUnit(skip.size, unit)} {displayUnit} </p>
+                                    <p className='capitalize font-bold text-lg'>{convertUnit(skip.size, unit)} <span className='text-sm font-light'>{displayUnit} </span> </p>
+                                    </div>
                                 </div>
                                 <p className='text-xs text-accent/60 bg-accent/10 border border-primary/10 rounded px-2 py-1'>{skip.hire_period_days} days + </p>
                             </div>

@@ -14,7 +14,7 @@ import SelectSkipSize from './SelectSkipSize';
 
 
 export default function SkipCategory({ skips }) {
-console.log(skips)
+
     const [selected, setSelected] = useState(skips[0] || {})
     const [unit, setUnit] = useState('yards')
 
@@ -23,7 +23,7 @@ console.log(skips)
     const handleSelect = (item) => setSelected(item)
 
     return (
-        <div className=' border-primary/10 h-full w-full rounded-xl p-10 border overflow-hidden  shadow-xl shadow-black relative backdrop-blur bg-gradient-to-tr from-black/70 to-black/50'>
+        <div className=' border-primary/10 h-full w-full rounded-xl p-10 border overflow-hidden  shadow-xl shadow-black relative backdrop-blur bg-gradient-to-tr from-background to-background/70'>
             <SkipBorderEffect />
             <div className='grid md:grid-cols-2 gap-10'>
                 <SelectSkipSize select={handleSelect} skips={skips} selected={selected} setUnit={setUnit} unit={unit} displayUnit={displayUnit} />

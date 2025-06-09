@@ -2,11 +2,9 @@ import { lazy, Suspense, useState } from "react";
 import SkipCategorySkeleton from "../components/SkipCategorySkeleton/SkipCategorySkeleton";
 import { useSkips } from "../hooks/useSkips";
 import DemoStepper from "../components/DemoStepper/DemoStepper";
-import { toast } from "sonner";
 import { IoMdRefresh } from "react-icons/io";
-import ButtonPrimary from "../components/ButtonPrimary/ButtonPrimary";
 import ButtonSecondary from "../components/ButtonSecondary/ButtonSecondary";
-
+import 'react-tooltip/dist/react-tooltip.css'
 
 const SkipCategory = lazy(() => import('../components/SkipCategory/SkipCategory'))
 
@@ -14,7 +12,7 @@ export default function SkipSelector() {
     const [retry, setRetry] = useState(false)
     const { isPending, error, data } = useSkips();
 
-    const retryAgain = ()=> setRetry(!retry)
+    const retryAgain = () => setRetry(!retry)
 
     return (
         <div className="container space-y-20 ">
