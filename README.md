@@ -11,7 +11,6 @@ The skip size data is fetched dynamically from the external API:
 ## Screenshots
 ![Skip Size Selector](./public/app.png)
 ---
-
 ## Approach & Design
 
 ### **1. Understanding the Problem**
@@ -25,6 +24,21 @@ To tackle this, I focused on the following aspects:
 - **Modularizing** the components for better maintainability.
 - Ensuring the page is **responsive** and **mobile-friendly**.
 - Providing a smooth, **error-free user experience**.
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces, providing a component-based architecture and virtual DOM for fast rendering.
+- **React Query**: A powerful data-fetching and state management library for React, used to manage asynchronous data, caching, and server state.
+- **Axios**: A promise-based HTTP client used to make API requests and fetch skip data from the external API.
+- **Tailwind CSS**: A utility-first CSS framework that provides low-level styling options for creating custom designs quickly.
+- **Vite**: A fast and modern build tool and development server that enables hot module replacement (HMR) and fast compilation for React apps.
+- **Headless UI**: A set of completely unstyled, fully accessible UI components designed to integrate seamlessly with Tailwind CSS.
+- **Kendo React**: A library of UI components for building rich data-driven apps, used here for layout purposes.
+- **React Loading Skeleton**: A component that provides placeholder skeleton loaders to enhance UX during API data fetching.
+- **React Spinners**: A library of spinner components to display loading states in the UI.
+- **React icons**: icons lib, which utilizes ES6 imports .
+
+.
 
 ### **2. Component Structure**
 
@@ -123,4 +137,5 @@ Here’s why:
 - **Redux Toolkit**: A more **robust solution** for managing **global state** in large applications, particularly if there’s a need for advanced state logic like asynchronous actions, or if you need to manage complex state across various steps in the flow.
 
 But for this isolated step, **`useState`** and **React Query** are lightweight, easy-to-use solutions that do the job without unnecessary complexity.
+
 
