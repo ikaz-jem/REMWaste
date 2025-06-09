@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0f0f0f;
+  --forground: hsla(0, 0, 98%, 1);
+  --primary: #fd7e14;
+  --accent: #ffc107;
+  --neutral: #464646;
+  --loader-primary:#fd7d1413;
+  --loader-accent:#ffc10700;
+}
+
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-neutral: var(--neutral);
+  --color-accent: var(--accent);
+}
+
+
+
+body {
+  background: var(--background);
+}
+
+body,html {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+* {
+  box-sizing: border-box !important;
+}
+
+@utility container {
+  padding: 0px 0px;
+  margin-inline: auto;
+
+
+  @variant xl {
+    width: 1240px;
+  }
+}
+
+
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px; /* for horizontal scroll */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);  /* Track background */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary); /* Tailwind blue-500 */
+  border-radius: 6px;
+  border: 3px solid #f0f0f0; /* Adds padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary); /* Darker on hover */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;              /* Options: auto | thin | none */
+  scrollbar-color: var(--primary) var(--background);   /* thumb color, track color */
+}
+
+
+.hover-this .hover-anim {
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.2s linear;
+  transition: -webkit-transform 0.2s linear;
+  -o-transition: transform 0.2s linear;
+  transition: transform 0.2s linear;
+  transition: transform 0.2s linear, -webkit-transform 0.2s linear;
+}
+
+.cursor {
+  pointer-events: none;
+  position: fixed;
+  padding: 0.3rem;
+  background-color: #fff;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  -webkit-transition: opacity 0.4s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.4s ease, -webkit-transform 0.3s ease;
+  -o-transition: transform 0.3s ease, opacity 0.4s ease;
+  transition: transform 0.3s ease, opacity 0.4s ease;
+  transition: transform 0.3s ease, opacity 0.4s ease,
+    -webkit-transform 0.3s ease;
+  z-index: 99999;
+}
+
+.cursor-active {
+  -webkit-transform: translate(-50%, -50%) scale(8);
+  -ms-transform: translate(-50%, -50%) scale(8);
+  transform: translate(-50%, -50%) scale(8);
+  opacity: 0.1;
+}
+
+
+
+
+
+
+/* stepper ovveride 
+
+/* Remove margins and padding */
+.k-stepper {
+  margin: 10px !important;
+  padding: 0 !important;
+  color: #fd7e14 !important;
+}
+.k-step {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #fd7e14;
+}
+.k-step-label {
+  margin-bottom: 15px  !important;
+  color: var(--neutral) !important;
+  font-weight: 500;
+}
+
+/* Active step */
+.k-step-current .k-step-indicator {
+  background-color: rgb(0, 0, 0) !important;  /* Purple-600 */
+  border: none !important;
+}
+
+/* Completed step */
+.k-step-done .k-step-indicator {
+  background-color: var(--primary) !important;  /* Green-600 */
+  border: none !important;
+}
+
+/* Optional step label color */
+.k-step-optional {
+  color: #9ca3af !important; /* Gray-400 */
+}
+
+/* Optional: adjust icon size */
+.k-svg-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
