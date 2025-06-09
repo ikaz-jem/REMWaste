@@ -60,7 +60,7 @@ export default function SelectSkipSize({ skips, setUnit, selected, displayUnit, 
                     <p className='text-xs text-white/50'>{displayUnit}</p>
                 </div>
             </div>
-            <ul className=' gap-2 overflow-y-scroll h-40 md:h-full max-h-[40vh] divide-y  divide-accent/10 rounded py-5'>
+            <ul className=' gap-2 overflow-y-scroll h-40 md:h-full max-h-[40vh] divide-y  divide-accent/10 rounded py-5 border border-accent/5'>
                 {
                     skips?.map((skip) =>
                         <li key={skip.id} className={clsx('hover:bg-primary/5  h-12  cursor-pointer transition-all flex items-center px-5 py-5 text-white ', selected.id == skip.id ? "bg-primary/10 scale-98 shadow-inner shadow-black/50" : "bg-transparent")} onClick={() => handleSelect(skip)}>
