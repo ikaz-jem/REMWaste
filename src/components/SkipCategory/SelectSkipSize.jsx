@@ -19,8 +19,6 @@ import { useEffect } from 'react';
 export default function SelectSkipSize({ skips, setUnit, selected, displayUnit, unit, select }) {
 
     const [seachParams,setSearchParams] = useSearchParams();
-    
-    let buttonText = `Hire ${convertUnit(selected.size)} ${displayUnit} Skip`
 
  /**
  * useEffect hook that selects the first skip when the component mounts.
@@ -86,7 +84,7 @@ export default function SelectSkipSize({ skips, setUnit, selected, displayUnit, 
                 }
             </ul>
             <ButtonPrimary icon={<AiOutlineShoppingCart className='text-xl text-white' />} className='w-full py-5 capitalize'>
-                {buttonText}
+                {`Hire ${convertUnit(selected.size,unit)} ${displayUnit} Skip`}
             </ButtonPrimary>
         </div>
     )
