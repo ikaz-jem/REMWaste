@@ -11,7 +11,6 @@ The skip size data is fetched dynamically from the external API:
 
 
 ![Skip Size Selector](./public/app.png)
-![Skip Size Selector](./public/mobileraw.png)
 
 ---
 
