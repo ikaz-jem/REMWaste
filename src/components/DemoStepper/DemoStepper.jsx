@@ -5,15 +5,16 @@ import {
     dollarIcon,
     eyeIcon,
     mapMarkerIcon,
-    trackChangesAcceptIcon,calendarDateIcon
+    trackChangesAcceptIcon,calendarDateIcon,
+    cartIcon
 } from '@progress/kendo-svg-icons';
 
 const items = [
     { label: 'Location', svgIcon: mapMarkerIcon },
-    { label: 'Select Skip', svgIcon: eyeIcon},
-    { label: 'Permit Check', svgIcon: trackChangesAcceptIcon },
+    { label: 'Skips', svgIcon: eyeIcon},
+    { label: 'Permit', svgIcon: trackChangesAcceptIcon },
     { label: 'Date', svgIcon: calendarDateIcon },
-    { label: 'Payment Method', svgIcon: dollarIcon },
+    { label: 'Checkout', svgIcon: cartIcon },
 ];
 
 const DemoStepper = () => {
