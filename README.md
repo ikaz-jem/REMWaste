@@ -2,6 +2,8 @@
 
 ![Skip Size Selector Mobile](./public/mobile.png)
 
+[Live Preview - Netlify](https://mwaist.netlify.app/)  
+[CodeSandbox](https://codesandbox.io/p/github/ikaz-jem/REMWaste/main)
 
 ## Overview
 
